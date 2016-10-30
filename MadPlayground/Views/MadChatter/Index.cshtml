@@ -1,0 +1,15 @@
+﻿@model MadPlayground.Models.MadChatterModel
+
+@{
+    ViewBag.Title = "MadChatter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MadChatter</h2>
+
+@using (Html.BeginForm("Index", "MadChatter", FormMethod.Post))
+{
+    @Html.EditorFor(model => model.Message);
+    <input type="submit" value="press" />
+    <span>@Model.Message</span>
+}
