@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MadPlayground.Models
+namespace MadBinding.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

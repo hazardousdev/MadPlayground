@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using MadPlayground.Models;
+using MadBinding.Models;
 
-namespace MadPlayground
+namespace MadBinding
 {
     public partial class Startup
     {

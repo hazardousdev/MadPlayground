@@ -2,7 +2,7 @@
 <hibernate-configuration  xmlns="urn:nhibernate-configuration-2.2" >
   <session-factory name="NHibernate.Test">
     <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
-    <property name="connection.connection_string">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="C:\Programming\C#\Projects\My projects\MadPlayground\MadPlayground\App_Data\MadDB.mdf";Integrated Security=True;database=nhibernate;Connect Timeout=30;User Instance=False</property>
+    <property name="connection.connection_string">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="|DataDirectory|\MadDB.mdf";Integrated Security=True;database=playground_db;Connect Timeout=30;User Instance=False</property>
     <property name="dialect">NHibernate.Dialect.MsSql2008Dialect</property>
 
     <property name="show_sql">true</property>

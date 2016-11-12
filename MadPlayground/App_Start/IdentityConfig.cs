@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using MadPlayground.Models;
+using MadBinding.Models;
 
-namespace MadPlayground
+namespace MadBinding
 {
     public class EmailService : IIdentityMessageService
     {

@@ -17,8 +17,6 @@ namespace MadBinding.Repositories
                     var configuration = new Configuration();
                     configuration.Configure();
                     configuration.AddAssembly("MadBinding");
-                    //configuration.AddAssembly(typeof(FileViewORMModel).Assembly);
-                    //configuration.AddAssembly(typeof(FileCreateORMModel).Assembly);
                     _sessionFactory = configuration.BuildSessionFactory();
                 }
                 return _sessionFactory;

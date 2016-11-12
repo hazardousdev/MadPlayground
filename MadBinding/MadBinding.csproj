@@ -53,16 +53,20 @@
     <Compile Include="Helpers\NHibernateHelper.cs" />
     <Compile Include="Managers\FileManager.cs" />
     <Compile Include="Managers\IFileManager.cs" />
+    <Compile Include="Models\chaser\ChaserSnapshotModel.cs" />
+    <Compile Include="Models\chaser\ChaserVictimModel.cs" />
     <Compile Include="Models\FileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Mappings\Mappings.hbm.xml">
+    <EmbeddedResource Include="Mappings\Mappings.hbm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

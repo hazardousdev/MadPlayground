@@ -2,32 +2,21 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
                    assembly="MadBinding"
                    namespace="MadBinding.Models">
-
-  <class name="FileViewORMModel" table="Files">
-    <id name="Id">
-      <generator class="guid" />
+  
+  <class name="ChaserVictimModel" table="chaser_victims">
+    <id name="Id" column="id" >
+      <generator class="increment" />
     </id>
-    <property name="FileName" />
-    <property name="AuthorId" />
-    <property name="AuthorName" />
-    <property name="CreationDate" />
-
+    <property name="ExternalId" column="external_id" />
   </class>
 
-  <class name="FileCreateORMModel" table="Files">
-    <id name="Id">
-      <generator class="guid" />
+  <class name="ChaserSnapshotModel" table="chaser_snapshots">
+    <id name="Id" column="id" >
+      <generator class="increment" />
     </id>
-    <property name="FileName" />
-    <property name="AuthorId" />
-    <property name="AuthorName" />
-    <property name="Data" type="BinaryBlob" />
-    <property name="CreationDate" />
-
-    <sql-insert xml:space="preserve">
-      EXEC dbo.addFile @FileName = ?, @AuthorId = ?, @AuthorName = ?, @Data = ?
-    </sql-insert>
-
+    <property name="Date" column="date" />
+    <property name="RawStatus" column="raw_status" />
+    <property name="VictimId" column="victim_id" />
   </class>
 
 </hibernate-mapping>
