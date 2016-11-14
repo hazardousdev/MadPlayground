@@ -1,4 +1,4 @@
-﻿DROP TABLE [dbo].[chaser_snapshots];
+﻿DROP TABLE IF EXISTS [dbo].[chaser_snapshots];
 CREATE TABLE [dbo].[chaser_snapshots] (
     [id]         INT            NOT NULL,
     [date]       DATETIME       NOT NULL,
