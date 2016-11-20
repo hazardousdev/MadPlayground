@@ -51,7 +51,7 @@ namespace MadService.Chaser
             using (ISession session = NHibernateHelper.OpenSession())
             {
                 var entities = session.CreateCriteria<ChaserSnapshotModel>()
-                    .Add(Restrictions.Eq("Id", victimId))
+                    .Add(Restrictions.Eq("VictimId", victimId))
                     .AddOrder(Order.Asc("Date"))
                     .List<ChaserSnapshotModel>();
                 return entities;

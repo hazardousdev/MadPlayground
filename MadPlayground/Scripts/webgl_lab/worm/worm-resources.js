@@ -6,7 +6,7 @@ var TEXTURE_GRASS_ID = 5;
 var MODEL_BODY_ID = 1;
 var MODEL_GROUND_ID = 2;
 
-var bodyModel = new Model(
+var cubicModel = new renderer.Model(
     MODEL_BODY_ID,
     null, null, null, null,
     [
@@ -86,9 +86,9 @@ var bodyModel = new Model(
         0.0, 1.0,
         // Top
         0.0, 0.0,
-        1.0, 0.0,
-        1.0, 1.0,
         0.0, 1.0,
+        1.0, 1.0,
+        1.0, 0.0,
         // Bottom
         0.0, 0.0,
         1.0, 0.0,
@@ -115,60 +115,60 @@ var bodyModel = new Model(
     ]
 );
 
-var groundModel = new Model(
+var groundModel = new renderer.Model(
     MODEL_GROUND_ID,
     null, null, null, null,
     [
-        // Front face
-        -10, -10, 0,
-        10, -10, 0,
-        10, 10, 0,
-        -10, 10, 0
+        // Top face
+        -10, 0, 10,
+        -10, 0, -10,
+        10, 0, -10,
+        10, 0, 10
     ],
     [
-        // Front
-        0.0, 0.0, 1.0,
-        0.0, 0.0, 1.0,
-        0.0, 0.0, 1.0,
-        0.0, 0.0, 1.0
+        // Top
+        0.0, 1.0, 0.0,
+        0.0, 1.0, 0.0,
+        0.0, 1.0, 0.0,
+        0.0, 1.0, 0.0
     ],
     [
-        // Front
+        // Top
+        0.0, 0.0,
         0.0, 1.0,
         1.0, 1.0,
-        1.0, 0.0,
-        0.0, 0.0
+        1.0, 0.0
     ],
     [
         0, 1, 2, 0, 2, 3    // front
     ]
 );
 
-var bodyTexture = new Texture(
+var bodyTexture = new renderer.Texture(
     TEXTURE_BODY_ID,
     null,
     "/Content/webgl_lab/images/hazardous_texture.png"
 );
 
-var beerTexture = new Texture(
+var beerTexture = new renderer.Texture(
     TEXTURE_BEER_ID,
     null,
     "/Content/webgl_lab/images/beer.jpg"
 );
 
-var wallTexture = new Texture(
+var wallTexture = new renderer.Texture(
     TEXTURE_WALL_ID,
     null,
     "/Content/webgl_lab/images/wall.jpg"
 );
 
-var madMaxTexture = new Texture(
+var madMaxTexture = new renderer.Texture(
     TEXTURE_MAD_MAX_ID,
     null,
     "/Content/webgl_lab/images/mad_max.jpg"
 );
 
-var grassTexture = new Texture(
+var grassTexture = new renderer.Texture(
     TEXTURE_GRASS_ID,
     null,
     "/Content/webgl_lab/images/grass.jpg"

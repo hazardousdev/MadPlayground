@@ -8,3 +8,14 @@
     }
     return constructor;
 }
+
+//from jquery 
+function isEmptyObject(obj) {
+
+    var name;
+
+    for (name in obj) {
+        return false;
+    }
+    return true;
+}

@@ -4,45 +4,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="http://mdn.github.io/webgl-examples/tutorial/sylvester.js" type="text/javascript"></script>
-<script src="http://mdn.github.io/webgl-examples/tutorial/glUtils.js" type="text/javascript"></script>
 <script src="~/Scripts/alco-utils.js" type="text/javascript"></script>
-<script src="~/Scripts/webgl_lab/renderer-initialization.js" type="text/javascript"></script>
-<script src="~/Scripts/webgl_lab/renderer-utils.js" type="text/javascript"></script>
-<script src="~/Scripts/webgl_lab/renderer-shaders.js" type="text/javascript"></script>
-<script src="~/Scripts/webgl_lab/renderer-resources.js" type="text/javascript"></script>
-<script src="~/Scripts/webgl_lab/renderer-integration.js" type="text/javascript"></script>
-<script src="~/Scripts/webgl_lab/renderer.js" type="text/javascript"></script>
+<script src="~/Scripts/webgl_lab/gl-matrix/gl-matrix.js" type="text/javascript"></script>
+<script src="~/Scripts/webgl_lab/renderer/renderer-initialization.js" type="text/javascript"></script>
+<script src="~/Scripts/webgl_lab/renderer/renderer-shaders.js" type="text/javascript"></script>
+<script src="~/Scripts/webgl_lab/renderer/renderer-resources.js" type="text/javascript"></script>
+<script src="~/Scripts/webgl_lab/renderer/renderer.js" type="text/javascript"></script>
                
-<script src="~/Scripts/webgl_lab/worm-resources.js" type="text/javascript"></script>
-<script src="~/Scripts/webgl_lab/worm.js" type="text/javascript"></script>
+<script src="~/Scripts/webgl_lab/worm/worm-resources.js" type="text/javascript"></script>
+<script src="~/Scripts/webgl_lab/worm/worm.js" type="text/javascript"></script>
 
 <script id="shader-vs" type="x-shader/x-vertex">
     attribute highp vec3 aVertexNormal;
     attribute highp vec3 aVertexPosition;
     attribute highp vec2 aTextureCoord;
 
-    uniform highp mat4 uNormalMatrix;
-    uniform highp mat4 uMVMatrix;
-    uniform highp mat4 uPMatrix;
+    uniform highp mat4 uMVPMatrix;
 
     varying highp vec2 vTextureCoord;
     varying highp vec3 vLighting;
 
     void main(void) {
-    gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
-    vTextureCoord = aTextureCoord;
+        gl_Position = uMVPMatrix * vec4(aVertexPosition, 1.0);
+        vTextureCoord = aTextureCoord;
 
-    // Apply lighting effect
+        // Apply lighting effect
 
-    highp vec3 ambientLight = vec3(0.1, 0.1, 0.1);
-    highp vec3 directionalLightColor = vec3(1, 1, 1);
-    highp vec3 directionalVector = vec3(0.85, 0.8, 0.75);
+        highp vec3 ambientLight = vec3(0.1, 0.1, 0.1);
+        highp vec3 directionalLightColor = vec3(1, 1, 1);
+        highp vec3 directionalVector = normalize(vec3(-1, -1, -1));
 
-    highp vec4 transformedNormal = uNormalMatrix * vec4(aVertexNormal, 1.0);
-
-    highp float directional = max(dot(transformedNormal.xyz, directionalVector), 0.0);
-    vLighting = ambientLight + (directionalLightColor * directional);
+        highp float directional = max(dot(aVertexNormal, -directionalVector), 0.0);
+        vLighting = ambientLight + (directionalLightColor * directional);
     }
 </script>
 
@@ -53,9 +46,9 @@
     uniform sampler2D uSampler;
 
     void main(void) {
-    highp vec4 texelColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
+        highp vec4 texelColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
 
-    gl_FragColor = vec4(texelColor.rgb * vLighting, texelColor.a);
+        gl_FragColor = vec4(texelColor.rgb * vLighting, texelColor.a);
     }
 </script>
 
@@ -65,7 +58,18 @@
 
 <script>
     function startWorm() {
-        startWGL("canvasWorm");
-        awakeWorm();
+        renderer.start(
+            {
+                "canvasId": "canvasWorm",
+                "collectionToRender": worm.objectsToRender, 
+                "camera": {
+                    "type": "arcball",
+                    "eye": vec3.fromValues(0, 15, 2),
+                    "center": vec3.fromValues(0, 0, 0),
+                    "up": vec3.fromValues(0, 1, 0)
+                }
+            }
+        );
+        worm.awake();
     }
 </script>
