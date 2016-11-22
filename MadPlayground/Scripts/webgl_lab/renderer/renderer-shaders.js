@@ -53,6 +53,9 @@
         gl.attachShader(shaderProgram, fragmentShader);
         gl.linkProgram(shaderProgram);
 
+        gl.deleteShader(fragmentShader);
+        gl.deleteShader(vertexShader);
+
         // If creating the shader program failed, alert
 
         if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
@@ -63,10 +66,8 @@
 
         vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
         gl.enableVertexAttribArray(vertexPositionAttribute);
-
         textureCoordAttribute = gl.getAttribLocation(shaderProgram, "aTextureCoord");
         gl.enableVertexAttribArray(textureCoordAttribute);
-
         vertexNormalAttribute = gl.getAttribLocation(shaderProgram, "aVertexNormal");
         gl.enableVertexAttribArray(vertexNormalAttribute);
     }

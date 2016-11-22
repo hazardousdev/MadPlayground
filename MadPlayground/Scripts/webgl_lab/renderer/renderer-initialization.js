@@ -2,6 +2,7 @@
 
 var gl;
 var shaderProgram;
+var shaderShadingProgram;
 
 var vertexPositionAttribute;
 var vertexNormalAttribute;
@@ -51,9 +52,16 @@ var textureCoordAttribute;
 
             renderer.shaders.initShaders();
 
-            setInterval(renderer.renderScene, 15);
+            loopRendering();
         }
     }
+
+    function loopRendering() {
+        requestAnimationFrame(loopRendering); // TODO передавать сюда канву вторым параметром. и обернуть это в (func)()
+
+        renderer.renderScene();
+    }
+
 
     function initWebGL(canvas) {
         gl = null;
